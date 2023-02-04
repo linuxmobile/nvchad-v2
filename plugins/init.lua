@@ -3,23 +3,31 @@ local overrides = require "custom.plugins.overrides"
 ---@type {[PluginName]: NvPluginConfig|false}
 local plugins = {
 
-  -- ["goolord/alpha-nvim"] = { disable = false } -- enables dashboard
-
-  -- Override plugin definition options
+  --- LSP-related settings
+  ["williamboman/mason.nvim"] = {
+    rm_default_opts = true,
+  },
+  ["williamboman/mason-lspconfig.nvim"] = {},
   ["neovim/nvim-lspconfig"] = {
+    rm_default_opts = true,
     config = function()
-      require "plugins.configs.lspconfig"
       require "custom.plugins.lspconfig"
     end,
   },
+  -- code formatting, linting etc
+  ["jose-elias-alvarez/null-ls.nvim"] = {
+    after = "nvim-lspconfig",
+    config = function()
+      require "custom.plugins.null-ls"
+    end,
+  },
 
+  --- Tree-sitter related plugins
   -- overrde plugin configs
   ["nvim-treesitter/nvim-treesitter"] = {
     override_options = overrides.treesitter,
   },
-
-  ["williamboman/mason.nvim"] = {
-    override_options = overrides.mason,
+  ["nvim-treesitter/nvim-treesitter-textobjects"] = {
   },
 
   ["nvim-tree/nvim-tree.lua"] = {
@@ -34,13 +42,6 @@ local plugins = {
     end,
   },
 
-  -- code formatting, linting etc
-  ["jose-elias-alvarez/null-ls.nvim"] = {
-    after = "nvim-lspconfig",
-    config = function()
-      require "custom.plugins.null-ls"
-    end,
-  },
 
   -- remove plugin
   -- ["hrsh7th/cmp-path"] = false,
