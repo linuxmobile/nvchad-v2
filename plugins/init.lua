@@ -4,22 +4,28 @@ local overrides = require "custom.plugins.overrides"
 local plugins = {
 
   --- LSP-related settings
-  ["williamboman/mason.nvim"] = {
-    rm_default_opts = true,
-  },
-  ["williamboman/mason-lspconfig.nvim"] = {},
+  -- First, remove mason.nvim from default nvchad to make sure it load on startup
+  ["williamboman/mason.nvim"] = false,
+  -- As we are trying to "mimic" a more IDE like environment
+  -- I believe having LSP enabled on starup is a more "sane" approach
   ["neovim/nvim-lspconfig"] = {
     rm_default_opts = true,
+    lazy = false,
     config = function()
       require "custom.plugins.lspconfig"
     end,
-  },
-  -- code formatting, linting etc
-  ["jose-elias-alvarez/null-ls.nvim"] = {
-    after = "nvim-lspconfig",
-    config = function()
-      require "custom.plugins.null-ls"
-    end,
+    --- Add back mason here, and we will load it from lspconfig settings
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      {
+        -- code formatting, linting etc
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+          require("custom.plugins.null-ls")
+        end
+      },
+    },
   },
 
   --- Tree-sitter related plugins
@@ -42,6 +48,11 @@ local plugins = {
     end,
   },
 
+
+  -- Re enable which-key
+  ["folke/which-key.nvim"] = {
+    enabled = true,
+  },
 
   -- remove plugin
   -- ["hrsh7th/cmp-path"] = false,

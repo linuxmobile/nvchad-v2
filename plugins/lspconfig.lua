@@ -24,7 +24,7 @@ end
 
 -- If you want to set custom lspconfig servers, set it here
 -- For example, NvChad's default lspconfig for sumneko_lua
-lspconfig["sumneko_lua"].setup({
+lspconfig["lua_ls"].setup({
   on_attach = on_attach,
   capabilities = capabilities,
   settings = {
