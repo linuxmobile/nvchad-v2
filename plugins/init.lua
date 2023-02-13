@@ -1,4 +1,4 @@
-local overrides = require "custom.plugins.overrides"
+local overrides = require("custom.plugins.overrides")
 
 ---@type {[PluginName]: NvPluginConfig|false}
 local plugins = {
@@ -12,7 +12,7 @@ local plugins = {
     rm_default_opts = true,
     lazy = false,
     config = function()
-      require "custom.plugins.lspconfig"
+      require("custom.plugins.lspconfig")
     end,
     --- Add back mason here, and we will load it from lspconfig settings
     dependencies = {
@@ -23,7 +23,35 @@ local plugins = {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
           require("custom.plugins.null-ls")
-        end
+        end,
+      },
+    },
+  },
+
+  --- DAP integration
+  ["mfussenegger/nvim-dap"] = {
+    lazy = true,
+    config = function()
+      require("custom.plugins.dap")
+    end,
+    init = function()
+      require("core.utils").load_mappings("dap")
+    end,
+    dependencies = {
+      { "nvim-treesitter/nvim-treesitter" },
+      -- VsCode-like UI
+      {
+        "rcarriga/nvim-dap-ui",
+        config = function()
+          require("dapui").setup()
+        end,
+      },
+      -- Virtual text for notes
+      {
+        "theHamsta/nvim-dap-virtual-text",
+        config = function()
+          require("nvim-dap-virtual-text").setup()
+        end,
       },
     },
   },
@@ -32,8 +60,9 @@ local plugins = {
   -- overrde plugin configs
   ["nvim-treesitter/nvim-treesitter"] = {
     override_options = overrides.treesitter,
-  },
-  ["nvim-treesitter/nvim-treesitter-textobjects"] = {
+    dependencies = {
+      { "nvim-treesitter/nvim-treesitter-textobject" },
+    },
   },
 
   ["nvim-tree/nvim-tree.lua"] = {
@@ -47,7 +76,6 @@ local plugins = {
       require("better_escape").setup()
     end,
   },
-
 
   -- Re enable which-key
   ["folke/which-key.nvim"] = {
