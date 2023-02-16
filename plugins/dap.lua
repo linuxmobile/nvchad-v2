@@ -21,7 +21,7 @@ repl.commands = vim.tbl_deep_extend("force", repl.commands, {
 })
 
 --- Example adapter with vscode cpptools
-dap.adapter.cppdbg = {
+dap.adapters.cppdbg = {
   id = "cppdbg",
   type = "executable",
 	command = mason_path .. "/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",

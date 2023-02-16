@@ -9,6 +9,33 @@ M.general = {
       end,
       "Toggle Terminal",
     },
+    -- Better i, a
+    -- Auto indent if you press i/a on empty line
+    ["i"] = {
+      function()
+        local char_count = #vim.trim(vim.fn.getline("."))
+        vim.api.nvim_feedkeys(char_count >= 1 and "i" or "S", "n", false)
+      end
+    },
+    ["a"] = {
+      function()
+        local char_count = #vim.trim(vim.fn.getline("."))
+        vim.api.nvim_feedkeys(char_count >= 1 and "a" or "S", "n", false)
+      end
+    },
+    ["I"] = {
+      function()
+        local char_count = #vim.trim(vim.fn.getline("."))
+        vim.api.nvim_feedkeys(char_count >= 1 and "I" or "S", "n", false)
+      end
+    },
+    ["A"] = {
+      function()
+        local char_count = #vim.trim(vim.fn.getline("."))
+        vim.api.nvim_feedkeys(char_count >= 1 and "A" or "S", "n", false)
+      end
+    },
+
     -- The keybinds below are also (Neo)Vim's keys, so you should uncomment 
     -- On your own to see if it interferes too much with your flow or not
 
@@ -99,7 +126,7 @@ M.dap = {
   }
 }
 
-M.lsp = {
+M.lspconfig = {
   n = {
     ["<F12>"] = {
       function()
@@ -107,6 +134,24 @@ M.lsp = {
       end,
       "Goto Definition"
     },
+    -- Shift-f12
+    -- Open reference menu for word under cursor
+    ["<F24>"] = { 
+      function()
+        require("lspsaga.finder"):lsp_finder()
+      end
+    },
+    -- Open Almost vscode equivalent source action menu
+    ["<leader>ca"] = {
+      "<cmd>Lspsaga code_action<CR>",
+      "Code Action",
+    }
+  },
+  v = {
+    ["<leader>ca"] = {
+      "<cmd>Lspsaga code_action<CR>",
+      "Code Action",
+    }
   }
 }
 

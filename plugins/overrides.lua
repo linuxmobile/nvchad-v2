@@ -9,6 +9,17 @@ M.treesitter = {
     "javascript",
     "c",
   },
+  -- textobjects = {
+  --   enable = true,
+  --   lookahead = true,
+  --   include_surrounding_whitespace = true,
+  --   keymaps = {
+  --     ["af"] = "@function.outer",
+  --     ["if"] = "@function.inner",
+  --     ["ac"] = "@class.outer",
+  --     ["ic"] = "@class.inner",
+  --   },
+  -- }
 }
 
 M.mason = {
@@ -22,6 +33,9 @@ M.mason = {
     "html-lsp",
     "typescript-language-server",
     "deno",
+
+    -- DAP stuff 
+    "cpptools"
   },
 }
 

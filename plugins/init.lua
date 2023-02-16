@@ -5,9 +5,12 @@ local plugins = {
 
   --- LSP-related settings
   -- First, remove mason.nvim from default nvchad to make sure it load on startup
-  ["williamboman/mason.nvim"] = false,
+  ["williamboman/mason.nvim"] = {
+    rm_default_opts = true,
+    override_options = overrides.mason,
+  },
   -- As we are trying to "mimic" a more IDE like environment
-  -- I believe having LSP enabled on starup is a more "sane" approach
+  -- I believe having LSP enabled on startup is the easier approach
   ["neovim/nvim-lspconfig"] = {
     rm_default_opts = true,
     lazy = false,
@@ -25,15 +28,31 @@ local plugins = {
           require("custom.plugins.null-ls")
         end,
       },
-      -- Many people seems to use this for more fancy UI stuffs, so just commenting here 
-      -- If you want to look more into it
-      -- { "glepnir/lspsaga.nvim" }
     },
+  },
+  ["lewis6991/gitsigns.nvim"] = {
+    dependencies = {
+      -- Many people seems to use this for more fancy UI stuffs, so just commenting here 
+      -- If you want to read more at https://github.com/glepnir/lspsaga.nvim
+      -- I am adding it only to use its code actions UI window
+      -- And as an example of using `opts = {...}` and `config = true` 
+       {
+        "glepnir/lspsaga.nvim",
+        -- This table here is lspsaga config,
+        -- Read more from their github page
+        opts = {
+          lightbulb = { enable = false },
+          symbol_in_winbar = { enable = false, },
+        },
+        config = true,
+      },
+    }
   },
 
   --- DAP integration
   ["mfussenegger/nvim-dap"] = {
     lazy = true,
+    cmd = { "DapContinue", "DapToggleBreakpoint", },
     config = function()
       require("custom.plugins.dap")
     end,
@@ -63,9 +82,12 @@ local plugins = {
   -- overrde plugin configs
   ["nvim-treesitter/nvim-treesitter"] = {
     override_options = overrides.treesitter,
-    dependencies = {
-      { "nvim-treesitter/nvim-treesitter-textobjects" },
-    },
+    --- If you have use Vim before, you know how powerful textobjects are
+    --- The plugin below is to enable its capabilities further
+    --- If you want to then you can enable it and uncomment the `textobjects` section in `overrides.treesitter`
+    -- dependencies = {
+    --   { "nvim-treesitter/nvim-treesitter-textobjects" },
+    -- },
   },
 
   ["nvim-tree/nvim-tree.lua"] = {
