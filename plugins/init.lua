@@ -64,20 +64,12 @@ local plugins = {
   ["nvim-treesitter/nvim-treesitter"] = {
     override_options = overrides.treesitter,
     dependencies = {
-      { "nvim-treesitter/nvim-treesitter-textobject" },
+      { "nvim-treesitter/nvim-treesitter-textobjects" },
     },
   },
 
   ["nvim-tree/nvim-tree.lua"] = {
     override_options = overrides.nvimtree,
-  },
-
-  -- Install a plugin
-  ["max397574/better-escape.nvim"] = {
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
   },
 
   -- Re enable which-key

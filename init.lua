@@ -5,3 +5,37 @@ local autocmd = vim.api.nvim_create_autocmd
 --   pattern = "*",
 --   command = "tabdo wincmd =",
 -- })
+
+--- This is currently only for neovim nightly users
+--- Loading this file will make your number column looks almost like vscode :)
+--- Pre warning is that this may slow down the render time between each keystroke by a lot
+--- Credits to https://github.com/CKolkey for the example implementation
+--- and to @luukvbaal for the feature itself
+
+-- vim.opt.fillchars = {
+--   eob = " ",
+--   foldopen = "",
+--   foldclose = "",
+-- }
+-- vim.api.nvim_create_autocmd({"FileType"}, {
+--   callback = function(args)
+--     if vim.tbl_contains({
+--       "nofile",
+--       "help",
+--       "prompt",
+--       "terminal",
+--       "quickfix",
+--     }, vim.bo[args.buf].buftype)
+--     or vim.tbl_contains({
+--       "help",
+--       "lspinfo",
+--       "TelescopePrompt",
+--       "TelescopeResults",
+--       "mason",
+--       "NvimTree"
+--     }, vim.bo[args.buf].filetype) then
+--       return
+--     end
+--     vim.wo.statuscolumn = "%{%v:lua.require('custom.plugins.statuscolumn').draw()%}"
+--   end
+-- })
