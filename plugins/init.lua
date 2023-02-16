@@ -14,8 +14,8 @@ local plugins = {
     config = function()
       require("custom.plugins.lspconfig")
     end,
-    --- Add back mason here, and we will load it from lspconfig settings
     dependencies = {
+      --- Add back mason here, and we will load it from lspconfig settings
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       {
@@ -25,6 +25,9 @@ local plugins = {
           require("custom.plugins.null-ls")
         end,
       },
+      -- Many people seems to use this for more fancy UI stuffs, so just commenting here 
+      -- If you want to look more into it
+      -- { "glepnir/lspsaga.nvim" }
     },
   },
 

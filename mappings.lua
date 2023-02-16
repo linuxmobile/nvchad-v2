@@ -3,8 +3,64 @@ local M = {}
 
 M.general = {
   n = {
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    ["<C-`>"] = {
+      function()
+        require("nvterm.terminal").toggle("horizontal")
+      end,
+      "Toggle Terminal",
+    },
+    -- The keybinds below are also (Neo)Vim's keys, so you should uncomment 
+    -- On your own to see if it interferes too much with your flow or not
+
+    -- [";"] = { ":", "enter command mode", opts = { nowait = true } }, -- Default: Repeat [f,t,F,T]
+    -- ["<C-b>"] = { "<cmd>NvimTreeToggle<CR>", "Toggle Nvim Tree" }, -- Default: Jump one page down
+
+    -- ["<C-c>"] = { '"+x', "Copy to Clipboard"}, -- Default: Interrupt current command/Abort pending command
+    -- ["<C-v>"] = { '"+p', "Paste From Clipboard"}, -- Default: Enter Block-Visual Mode
+    -- ["<C-x>"] = { '"+dd', "Cut Current Line to Clipboard" },
   },
+  t = {
+    ["<C-`>"] = { -- Mimicking vscode terminal toggling
+      function()
+        require("nvterm.terminal").toggle("horizontal")
+      end,
+      "Toggle Terminal",
+    }
+  },
+
+  -- v = {
+    -- These are Vim's keybinds too,
+    -- So uncomment it if you feel it's okay 
+
+    -- ["<C-c>"] = { '"+y', "Copy Selection", }, -- Default: Stop visual mode
+    -- ["<C-v>"] = { '"+p', "Paste From Clipboard"} -- Default: Enter/Escape Block-visual mode
+    -- ["<C-x>"] = { '"+d', "Cut Selection", } -- Default: Subtract highlighted text, :h v_CTRL-X
+  -- },
+
+  -- i = {
+    -- ["<C-c>"] = { '<C-o>"+y', "Copy Selection", }, -- Default: Quit insert mode
+    -- ["<C-v>"] = { '<C-o>"+p', "Paste From Clipboard"} -- Default: Insert literal keycode, recommend against uncommenting this, use <C-S-v> instead
+    -- ["<C-x>"] = { '<C-o>"+dd', "Cut Selection", } -- Default: Subtract highlighted text, :h v_CTRL-X
+  -- }
+}
+
+
+--- Replicating vscode commenting (well somewhat)
+M.comment = {
+  n = {
+    ["<C-/>"] = {
+      function()
+        require("Comment.api").toggle.linewise.current()
+      end,
+      "toggle comment",
+    },
+  },
+  v = {
+    ["<C-/>"] = {
+      "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+      "toggle comment",
+    },
+  }
 }
 
 -- more keybinds!
@@ -36,9 +92,20 @@ M.dap = {
     ["<F11>"] = {
       "<cmd>DapStepInto<CR>", "Step Into (Debug)"
     },
-    ["<F23>"] = {
+    ["<F23>"] = { -- Shift-f11
       "<cmd>DapStepOut<CR>",
       "Step Out (Debug)"
+    },
+  }
+}
+
+M.lsp = {
+  n = {
+    ["<F12>"] = {
+      function()
+        vim.lsp.buf.definition()
+      end,
+      "Goto Definition"
     },
   }
 }
