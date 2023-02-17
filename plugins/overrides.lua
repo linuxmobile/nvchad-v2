@@ -7,7 +7,7 @@ M.treesitter = {
     "html",
     "css",
     "javascript",
-    "c",
+    "astro",
   },
 }
 
@@ -20,8 +20,9 @@ M.mason = {
     -- web dev stuff
     "css-lsp",
     "html-lsp",
-    "typescript-language-server",
-    "deno",
+    "astro-language-server",
+    "tailwindcss-language-server",
+    "typescript-language-server"
   },
 }
 

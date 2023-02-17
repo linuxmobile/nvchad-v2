@@ -20,7 +20,22 @@ local plugins = {
 		end,
 	},
 
+	["lewis6991/gitsigns.nvim"] = {
+		{
+			"glepnir/lspsaga.nvim",
+			opts = {
+				lightbulb = { enable = false },
+				symbol_in_winbar = { enable = false, },
+			},
+			config = true,
+		},
+	},
+
 	-- overrde plugin configs
+	["folke/which-key.nvim"] = {
+		enabled = true,
+	},
+
 	["nvim-treesitter/nvim-treesitter"] = {
 		override_options = overrides.treesitter,
 	},

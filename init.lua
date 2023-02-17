@@ -5,3 +5,5 @@ local autocmd = vim.api.nvim_create_autocmd
 --   pattern = "*",
 --   command = "tabdo wincmd =",
 -- })
+
+dofile(vim.g.base46_cache .. "statusline")
