@@ -7,6 +7,12 @@ M.general = {
   },
 }
 
+M.twilight = {
+  n = {
+    ["<leader>tw"] = { "<cmd>Twilight<cr>", "toggle twilight" },
+  },
+}
+
 -- more keybinds!
 
 return M

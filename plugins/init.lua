@@ -5,17 +5,10 @@ local plugins = {
 
 	-- Override plugin definition options
 
-  ["nvim-telescope/telescope.nvim"] = {
-    lazy = true,
-    dependencies = {
-      "nvim-telescope/telescope-file-browser.nvim",
-    },
-  },
-
 	["neovim/nvim-lspconfig"] = {
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
-      "github/copilot.vim",
+   		-- "github/copilot.vim",
 			-- format & linting
 			"jose-elias-alvarez/null-ls.nvim",
 			config = function()
@@ -67,6 +60,7 @@ local plugins = {
 
   ["folke/twilight.nvim"] = {
     lazy = true,
+    keys = { "<C-a>", { "<C-x>", mode = "n" } },
     treesitter = true,
     dimming = {
       alpha = 0.25,
@@ -75,6 +69,7 @@ local plugins = {
 
   ["github/copilot.vim"] = {
     lazy = true,
+    keys = { "<C-a>", { "<C-x>", mode = "n" } },
   },
 
   ["iamcco/markdown-preview.nvim"] = {
