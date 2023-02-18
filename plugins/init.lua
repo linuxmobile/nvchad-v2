@@ -5,8 +5,17 @@ local plugins = {
 
 	-- Override plugin definition options
 
+  ["nvim-telescope/telescope.nvim"] = {
+    lazy = true,
+    dependencies = {
+      "nvim-telescope/telescope-file-browser.nvim",
+    },
+  },
+
 	["neovim/nvim-lspconfig"] = {
 		dependencies = {
+			"williamboman/mason-lspconfig.nvim",
+      "github/copilot.vim",
 			-- format & linting
 			"jose-elias-alvarez/null-ls.nvim",
 			config = function()
@@ -32,9 +41,9 @@ local plugins = {
 	},
 
 	-- overrde plugin configs
-	["folke/which-key.nvim"] = {
-		enabled = true,
-	},
+	-- ["folke/which-key.nvim"] = {
+	-- 	enabled = true,
+	-- },
 
 	["nvim-treesitter/nvim-treesitter"] = {
 		override_options = overrides.treesitter,
@@ -56,6 +65,22 @@ local plugins = {
 		end,
 	},
 
+  ["folke/twilight.nvim"] = {
+    lazy = true,
+    treesitter = true,
+    dimming = {
+      alpha = 0.25,
+    },
+  },
+
+  ["github/copilot.vim"] = {
+    lazy = true,
+  },
+
+  ["iamcco/markdown-preview.nvim"] = {
+    lazy = true,
+    run = "cd app && pnpm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" },
+  },
 	-- remove plugin
 	-- ["hrsh7th/cmp-path"] = false,
 }
