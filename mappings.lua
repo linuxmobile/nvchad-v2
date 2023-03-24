@@ -1,4 +1,4 @@
----@type MappingsConfig
+---@type MappingsTable
 local M = {}
 
 M.general = {

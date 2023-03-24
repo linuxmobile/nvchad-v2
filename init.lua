@@ -1,4 +1,4 @@
-local autocmd = vim.api.nvim_create_autocmd
+-- local autocmd = vim.api.nvim_create_autocmd
 
 -- Auto resize panes when resizing nvim window
 -- autocmd("VimResized", {
@@ -6,4 +6,4 @@ local autocmd = vim.api.nvim_create_autocmd
 --   command = "tabdo wincmd =",
 -- })
 
-dofile(vim.g.base46_cache .. "statusline")
+-- dofile(vim.g.base46_cache .. "statusline")
