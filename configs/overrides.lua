@@ -42,4 +42,10 @@ M.nvimtree = {
   },
 }
 
+
+M.cmp = {
+  sources = {
+    name = "nvim_lsp", priority = 10, keyword_length = 6, group_index = 1, max_item_count = 30
+  },
+}
 return M

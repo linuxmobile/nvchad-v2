@@ -61,7 +61,6 @@ local plugins = {
 
   {
 	"folke/twilight.nvim",
-    lazy = true,
     keys = { "<C-a>", { "<C-x>", mode = "n" } },
     treesitter = true,
     dimming = {
@@ -71,13 +70,13 @@ local plugins = {
 
   {
 	"github/copilot.vim",
-    lazy = true,
+    -- lazy = true,
+    event = "InsertEnter",
     keys = { "<C-a>", { "<C-x>", mode = "n" } },
   },
 
   {
 	"iamcco/markdown-preview.nvim",
-    lazy = true,
     run = "cd app && pnpm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" },
   },
 }
