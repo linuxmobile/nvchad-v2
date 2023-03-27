@@ -35,6 +35,14 @@ local plugins = {
 		},
 	},
 
+  {
+    "kylechui/nvim-surround",
+    ft = {"markdown", "lua", "js", "ts", "tsx", "jsx", "html", "css", "astro"},
+    config = function()
+      require("nvim-surround").setup({})
+    end,
+  },
+
 	{
 		"nvim-treesitter/nvim-treesitter",
 		opts = overrides.treesitter,
