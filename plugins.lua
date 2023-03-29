@@ -9,18 +9,17 @@ local plugins = {
 		dependencies = {
 		  -- format & linting
 		  {
-			"williamboman/mason-lspconfig.nvim",
-			-- "github/copilot.vim",
 			"jose-elias-alvarez/null-ls.nvim",
 			config = function()
 			  require "custom.configs.null-ls"
 			end,
 		  },
 		},
+
 		config = function()
 		  require "plugins.configs.lspconfig"
 		  require "custom.configs.lspconfig"
-		end, -- Override to setup mason-lspconfig
+		end,
 	},
 
 	{
@@ -37,7 +36,7 @@ local plugins = {
 
   {
     "kylechui/nvim-surround",
-    ft = {"markdown", "lua", "js", "ts", "tsx", "jsx", "html", "css", "astro"},
+    ft = {"markdown", "lua", "javascript", "typescript", "tsx", "jsx", "html", "css", "astro"},
     config = function()
       require("nvim-surround").setup({})
     end,

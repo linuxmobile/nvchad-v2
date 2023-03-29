@@ -8,6 +8,8 @@ M.treesitter = {
     "css",
     "javascript",
     "astro",
+    "tsx",
+    "typescript"
   },
 }
 
@@ -22,12 +24,19 @@ M.mason = {
     "html-lsp",
     "astro-language-server",
     "tailwindcss-language-server",
-    "typescript-language-server"
+    "typescript-language-server",
+    "deno",
+    "prettier",
+    "json-lsp"
   },
 }
 
 -- git support in nvimtree
 M.nvimtree = {
+  filters = {
+    dotfiles = true,
+    custom = { "node_modules" },
+  },
   git = {
     enable = true,
   },
@@ -42,10 +51,10 @@ M.nvimtree = {
   },
 }
 
-
 M.cmp = {
   sources = {
     name = "nvim_lsp", priority = 10, keyword_length = 6, group_index = 1, max_item_count = 30
   },
-}
+ }
+
 return M
