@@ -1,73 +1,73 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
 
-	-- Override plugin definition options
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-		  -- format & linting
-		  {
-			"jose-elias-alvarez/null-ls.nvim",
-			config = function()
-			  require "custom.configs.null-ls"
-			end,
-		  },
-		},
-
-		config = function()
-		  require "plugins.configs.lspconfig"
-		  require "custom.configs.lspconfig"
-		end,
-	},
-
-	{
-		"lewis6991/gitsigns.nvim",
-		{
-			"glepnir/lspsaga.nvim",
-			opts = {
-				lightbulb = { enable = false },
-				symbol_in_winbar = { enable = false, },
-			},
-			config = true,
-		},
-	},
-
+  -- Override plugin definition options
   {
-    "kylechui/nvim-surround",
-    ft = {"markdown", "lua", "javascript", "typescript", "tsx", "jsx", "html", "css", "astro"},
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      -- format & linting
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+          require "custom.configs.null-ls"
+        end,
+      },
+    },
+
     config = function()
-      require("nvim-surround").setup({})
+      require "plugins.configs.lspconfig"
+      require "custom.configs.lspconfig"
     end,
   },
 
-	{
-		"nvim-treesitter/nvim-treesitter",
-		opts = overrides.treesitter,
-	},
-
-	{
-		"williamboman/mason.nvim",
-		opts = overrides.mason,
-	},
-
-	{
-		"nvim-tree/nvim-tree.lua",
-		opts = overrides.nvimtree,
-	},
-
-	-- Install a plugin
-	{
-		"max397574/better-escape.nvim",
-		event = "InsertEnter",
-		config = function()
-			require("better_escape").setup()
-		end,
-	},
+  {
+    "lewis6991/gitsigns.nvim",
+    {
+      "glepnir/lspsaga.nvim",
+      opts = {
+        lightbulb = { enable = false },
+        symbol_in_winbar = { enable = false },
+      },
+      config = true,
+    },
+  },
 
   {
-	"folke/twilight.nvim",
+    "kylechui/nvim-surround",
+    ft = { "markdown", "lua", "javascript", "typescript", "tsx", "jsx", "html", "css", "astro" },
+    config = function()
+      require("nvim-surround").setup {}
+    end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = overrides.treesitter,
+  },
+
+  {
+    "williamboman/mason.nvim",
+    opts = overrides.mason,
+  },
+
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = overrides.nvimtree,
+  },
+
+  -- Install a plugin
+  {
+    "max397574/better-escape.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("better_escape").setup()
+    end,
+  },
+
+  {
+    "folke/twilight.nvim",
     keys = { "<C-a>", { "<C-x>", mode = "n" } },
     treesitter = true,
     dimming = {
@@ -76,15 +76,21 @@ local plugins = {
   },
 
   {
-	"github/copilot.vim",
-    -- lazy = true,
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
     event = "InsertEnter",
-    keys = { "<C-a>", { "<C-x>", mode = "n" } },
+    config = function()
+      require "custom.configs.copilot"
+    end,
   },
 
   {
-	"iamcco/markdown-preview.nvim",
-    run = "cd app && pnpm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" },
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && pnpm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
   },
 }
 

@@ -9,7 +9,7 @@ M.treesitter = {
     "javascript",
     "astro",
     "tsx",
-    "typescript"
+    "typescript",
   },
 }
 
@@ -27,7 +27,7 @@ M.mason = {
     "typescript-language-server",
     "deno",
     "prettier",
-    "json-lsp"
+    "json-lsp",
   },
 }
 
@@ -53,8 +53,17 @@ M.nvimtree = {
 
 M.cmp = {
   sources = {
-    name = "nvim_lsp", priority = 10, keyword_length = 6, group_index = 1, max_item_count = 30
+    name = "nvim_lsp",
+    priority = 10,
+    keyword_length = 6,
+    group_index = 1,
+    max_item_count = 30,
   },
- }
+  performance = {
+    trigger_debounce_time = 500,
+    throttle = 550,
+    fetching_timeout = 80,
+  },
+}
 
 return M
