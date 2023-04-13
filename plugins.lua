@@ -36,7 +36,7 @@ local plugins = {
 
   {
     "kylechui/nvim-surround",
-    ft = { "markdown", "lua", "javascript", "typescript", "tsx", "jsx", "html", "css", "astro" },
+    ft = { "markdown", "lua", "javascript", "typescript", "typescriptreact", "javascriptreact", "html", "css", "astro" },
     config = function()
       require("nvim-surround").setup {}
     end,

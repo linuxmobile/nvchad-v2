@@ -10,6 +10,8 @@ M.treesitter = {
     "astro",
     "tsx",
     "typescript",
+    "markdown",
+    "markdown_inline",
   },
 }
 
@@ -28,6 +30,7 @@ M.mason = {
     "deno",
     "prettier",
     "json-lsp",
+    "marksman",
   },
 }
 
