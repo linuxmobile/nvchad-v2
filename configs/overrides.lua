@@ -60,7 +60,7 @@ M.cmp = {
     priority = 10,
     keyword_length = 6,
     group_index = 1,
-    max_item_count = 30,
+    max_item_count = 15,
   },
   performance = {
     trigger_debounce_time = 500,

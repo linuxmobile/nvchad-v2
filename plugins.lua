@@ -68,7 +68,7 @@ local plugins = {
 
   {
     "folke/twilight.nvim",
-    keys = { "<C-a>", { "<C-x>", mode = "n" } },
+    ft = { "markdown", "lua", "javascript", "typescript", "typescriptreact", "javascriptreact", "html", "css", "astro" },
     treesitter = true,
     dimming = {
       alpha = 0.25,
