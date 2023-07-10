@@ -1,12 +1,13 @@
-local overrides = require("custom.configs.overrides")
+---@diagnostic disable: different-requires
+local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
 
   -- Override plugin definition options
-
   {
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
     dependencies = {
       -- format & linting
       {
@@ -19,18 +20,38 @@ local plugins = {
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
-    end, -- Override to setup mason-lspconfig
+    end,
   },
 
-  -- override plugin configs
   {
-    "williamboman/mason.nvim",
-    opts = overrides.mason
+    "lewis6991/gitsigns.nvim",
+    {
+      "glepnir/lspsaga.nvim",
+      opts = {
+        lightbulb = { enable = false },
+        symbol_in_winbar = { enable = false },
+      },
+      config = true,
+    },
+  },
+
+  {
+    "kylechui/nvim-surround",
+    event = "VeryLazy",
+    ft = { "markdown", "lua", "javascript", "typescript", "typescriptreact", "javascriptreact", "html", "css", "astro" },
+    config = function()
+      require("nvim-surround").setup {}
+    end,
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
+  },
+
+  {
+    "williamboman/mason.nvim",
+    opts = overrides.mason,
   },
 
   {
@@ -47,19 +68,42 @@ local plugins = {
     end,
   },
 
-  -- To make a plugin not be loaded
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   enabled = false
-  -- },
+  {
+    "folke/twilight.nvim",
+    event = "VeryLazy",
+    ft = { "markdown", "lua", "javascript", "typescript", "typescriptreact", "javascriptreact", "html", "css", "astro" },
+    treesitter = true,
+    dimming = {
+      alpha = 0.25,
+    },
+  },
 
-  -- All NvChad plugins are lazy-loaded by default
-  -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
-  -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
-  -- {
-  --   "mg979/vim-visual-multi",
-  --   lazy = false,
-  -- }
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require "custom.configs.copilot"
+    end,
+  },
+
+  {
+    "iamcco/markdown-preview.nvim",
+    event = "VeryLazy",
+    run = "cd app && pnpm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+
+  {
+    "andweeb/presence.nvim",
+    event = "VeryLazy",
+    config = function()
+      require "custom.configs.presence"
+    end,
+  },
 }
 
 return plugins
