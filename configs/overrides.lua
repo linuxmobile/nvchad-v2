@@ -62,11 +62,6 @@ M.cmp = {
     group_index = 1,
     max_item_count = 15,
   },
-  performance = {
-    trigger_debounce_time = 500,
-    throttle = 550,
-    fetching_timeout = 80,
-  },
 }
 
 return M

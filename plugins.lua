@@ -1,3 +1,4 @@
+---@diagnostic disable: different-requires
 local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
@@ -6,6 +7,7 @@ local plugins = {
   -- Override plugin definition options
   {
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
     dependencies = {
       -- format & linting
       {
@@ -15,7 +17,6 @@ local plugins = {
         end,
       },
     },
-
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
@@ -36,6 +37,7 @@ local plugins = {
 
   {
     "kylechui/nvim-surround",
+    event = "VeryLazy",
     ft = { "markdown", "lua", "javascript", "typescript", "typescriptreact", "javascriptreact", "html", "css", "astro" },
     config = function()
       require("nvim-surround").setup {}
@@ -68,6 +70,7 @@ local plugins = {
 
   {
     "folke/twilight.nvim",
+    event = "VeryLazy",
     ft = { "markdown", "lua", "javascript", "typescript", "typescriptreact", "javascriptreact", "html", "css", "astro" },
     treesitter = true,
     dimming = {
@@ -86,11 +89,20 @@ local plugins = {
 
   {
     "iamcco/markdown-preview.nvim",
+    event = "VeryLazy",
     run = "cd app && pnpm install",
     setup = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
     ft = { "markdown" },
+  },
+
+  {
+    "andweeb/presence.nvim",
+    event = "VeryLazy",
+    config = function()
+      require "custom.configs.presence"
+    end,
   },
 }
 
